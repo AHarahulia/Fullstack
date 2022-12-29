@@ -1,1 +1,3 @@
-{ "eslint.validate": ["html", "javascript", "javascriptreact"] }
+{ "eslint.validate": ["html", "javascript", "javascriptreact"], 
+
+"python.pythonPath":"api/.venv/bin/python3" }
