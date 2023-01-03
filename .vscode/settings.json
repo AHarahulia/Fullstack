@@ -1,0 +1,10 @@
+{
+  "python.linting.pycodestyleEnabled": true,
+  "python.linting.pycodestyleArgs": ["--max-line-length=89"],
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
+  "[python]": {
+    "editor.formatOnSave": true
+  },
+  "python.autoComplete.extraPaths": ["./.venv/bin/python3"]
+}
