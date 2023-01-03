@@ -6,5 +6,6 @@
   "[python]": {
     "editor.formatOnSave": true
   },
-  "python.autoComplete.extraPaths": ["./.venv/bin/python3"]
+  "python.autoComplete.extraPaths": ["./.venv/bin/python3"],
+  "python.analysis.extraPaths": ["./.venv/bin/python3"]
 }
