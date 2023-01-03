@@ -1,9 +1,7 @@
 //import { useState } from "react";
 import { Container, Row, Col, Form, Button } from "react-bootstrap";
 
-
 const Search = ({ word, setWord, handleSubmit }) => {
-
   return (
     <Container className="mt-4">
       <Row>
@@ -13,10 +11,11 @@ const Search = ({ word, setWord, handleSubmit }) => {
               <Col xs={9}>
                 <Form.Control
                   type="text"
-                  value={word} 
+                  value={word}
                   placeholder="Search for new image..."
-                  onChange={(e) => setWord(e.target.value)} />        
-            </Col>
+                  onChange={(e) => setWord(e.target.value)}
+                />
+              </Col>
               <Col>
                 <Button variant="primary" type="submit" onClick={handleSubmit}>
                   Search
