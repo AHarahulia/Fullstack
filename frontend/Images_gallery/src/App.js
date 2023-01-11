@@ -1,7 +1,8 @@
 import "bootstrap/dist/css/bootstrap.min.css";
+import axios from "axios";
 import Header from "./components/Header";
 import Search from "./components/Search";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import ImageCard from "./components/ImageCard";
 import { Container, Row, Col } from "react-bootstrap";
 import Welcome from "./components/Welcome";
@@ -12,19 +13,29 @@ const App = () => {
   const [word, setWord] = useState("");
   const [images, setImages] = useState([]);
 
-  const handleSearchSubmit = (e) => {
-    e.preventDefault();
-    console.log(word);
-    fetch(`${API_URL}/new-image?query=${word}`)
-      .then((result) => result.json())
-      .then((data) => {
-        setImages([{ ...data, title: word }, ...images]);
-      })
-      .catch((error) => {
+  useEffect(() => {
+    const getSavedImages = async () => {
+      try {
+        const res = await axios.get(`${API_URL}/images`);
+        setImages(res.data || []);
+      } catch (error) {
         console.log(error);
-      });
+      }
+      getSavedImages();
+    };
+  }, [word]);
+
+  const handleSearchSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await axios.get(`${API_URL}/new-image?query=${word}`);
+      setImages([{ ...res.data, title: word}, ...images]);
+    } catch (error) {
+      console.log(error);
+    }
     setWord("");
   };
+
   const handleDeleteImage = (id) => {
     setImages(images.filter((image) => image.id !== id));
   };

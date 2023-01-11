@@ -37,7 +37,7 @@ def new_image():
         "query": word
     }
     response = requests.get(url=UNSPLASH_URL, headers=headers, params=params)
-    data = response.json
+    data = response.json()
     return data
 
 
