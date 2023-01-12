@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
 
-const ImageCard = ({ image, deleteImage }) => {
+const ImageCard = ({ image, deleteImage, saveImage }) => {
   return (
     <>
       <Card style={{ width: "18rem" }}>
@@ -12,7 +12,12 @@ const ImageCard = ({ image, deleteImage }) => {
           <Card.Text>{image.description || image.alt_description}</Card.Text>
           <Button variant="primary" onClick={() => deleteImage(image.id)}>
             Delete
-          </Button>
+          </Button>{" "}
+          {!image.saved && (
+            <Button variant="secondary" onClick={() => saveImage(image.id)}>
+              Save
+            </Button>
+          )}
         </Card.Body>
       </Card>
     </>
