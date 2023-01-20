@@ -47,7 +47,6 @@ def images():
     if request.method == "GET":
         # read images from the database
         images = images_collection.find({})
-        type(images)
         return jsonify(list(images))
     if request.method == "POST":
         # save image in the database
@@ -56,6 +55,19 @@ def images():
         result = images_collection.insert_one(image)
         inserted_id = result.inserted_id
         return {"inserted_id": inserted_id}
+
+@app.route("/images/<image_id>", methods=["DELETE"])
+def image(image_id):
+    """"Deleting images"""
+    if request.method == "DELETE":
+        preresult = {"_id": image_id}
+        result = images_collection.delete_one(preresult)
+        if not result:
+            return {"error": "Image was not deleted. Please try again"}, 500
+        if result and not result.deleted_count:
+            return {"error": "Image not found"}, 404
+        return {"deleted_id": image_id}
+
 
 
 if __name__ == "__main__":
