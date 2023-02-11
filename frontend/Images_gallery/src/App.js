@@ -21,11 +21,11 @@ const App = () => {
     const getSavedImages = async () => {
       try {
         const res = await axios.get(`${API_URL}/images`);
-        console.log(res.data);
-
+        if (res.data.length > 0) {
+          toast.success("Saved images downloaded ");
+        }
         setImages(res.data || []);
         setLoading(false);
-        toast.success("Saved images downloaded ");
       } catch (error) {
         console.log(error);
         toast.error(error.message);
